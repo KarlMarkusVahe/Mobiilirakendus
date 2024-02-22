@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native";
 import Signup from './src/screens/auth/SignUp'
 import Config from "react-native-config";
 import Signin from './src/screens/auth/signIn';
+import Home from './src/screens/Home';
 
 const App = () => {
     useEffect(() => {
@@ -16,7 +17,7 @@ const App = () => {
     }, [])
     return (
         <SafeAreaView>
-            <Signin></Signin>
+            <Home></Home>
         </SafeAreaView>
     );
 };
