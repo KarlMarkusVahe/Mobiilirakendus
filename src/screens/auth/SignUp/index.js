@@ -4,6 +4,7 @@ import Input from "../../../components/Input"
 import styles from "./styles";
 import Checkbox from "../../../components/Checkbox";
 import Button from "../../../components/Button";
+import Separator from "../../../components/Separator";
 import { useState } from "react";
 
 const Signup = () => {
@@ -20,6 +21,7 @@ const Signup = () => {
                 <Text style={styles.agreeText}>I agree with <Text style={styles.agreeTextBold}>Terms</Text> & <Text style={styles.agreeTextBold}>Privacy</Text></Text>
             </View>
             <Button style={styles.button} title="Sign In"></Button>
+            <Separator text="Or sign up with"></Separator>
         </View>
     )
 }
