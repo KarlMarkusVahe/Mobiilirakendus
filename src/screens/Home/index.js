@@ -10,17 +10,26 @@ import { products } from "../../data/products";
 
 const Home = () => {
     const [selectedCategory, setSelectedCategory] = useState()
+    const [keyword, setKeyword] = useState()
     const [selectedProducts, setSelectedProducts] = useState(products)
 
     useEffect(() => {
-        if(selectedCategory){
+        if(selectedCategory && !keyword){
         const updatedSelectedProducts = products.filter((product) => 
         product?.category === selectedCategory)
         setSelectedProducts(updatedSelectedProducts)
-    } else {
+    } else if (!keyword && !selectedCategory) {
         setSelectedProducts(products)
+    } else if (selectedCategory && keyword){
+        const updatedSelectedProducts = products.filter((product) => 
+        product?.category === selectedCategory && product?.title?.toLowerCase().includes(keyword.toLowerCase()))
+        setSelectedProducts(updatedSelectedProducts)
+    } else if (!selectedCategory && keyword) {
+        const updatedSelectedProducts = products.filter((product) => 
+        product?.title?.toLowerCase().includes(keyword.toLowerCase()))
+        setSelectedProducts(updatedSelectedProducts)
     }
-    }, [selectedCategory])
+    }, [selectedCategory, keyword])
 
     const renderCategoryItem = ({item}) => {
         return(
@@ -42,7 +51,7 @@ const Home = () => {
     return (
         <SafeAreaView>
             <View style={styles.container}>
-                <Header showSearch={true} title="Find All You Need"></Header>
+                <Header showSearch={true} onSearchKeyword={setKeyword} keyword={keyword} title="Find All You Need"></Header>
                 <FlatList showsVerticalScrollIndicator={false} style={styles.list} horizontal data={categories} renderItem={renderCategoryItem} keyExtractor={(item, index) => String(index)}></FlatList>
                 <FlatList numColumns={2} data={selectedProducts} renderItem={renderProductItem} keyExtractor={(item) => String(item.id)} ListFooterComponent={<View style={{height: 450}}></View>}></FlatList>
             </View>
