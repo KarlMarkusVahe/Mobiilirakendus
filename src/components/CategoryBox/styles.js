@@ -9,7 +9,8 @@ export const styles = StyleSheet.create({
         alignItems: 'center'
     },
     title: {
-        color: colors.grey
+        color: colors.grey,
+        marginHorizontal: 5
     },
     image: {
         width: 32,
@@ -19,6 +20,7 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.lightGray,
         padding: 8,
         borderRadius: 8,
-        marginBottom: 8
+        marginBottom: 8,
+        marginHorizontal: 5
     }
 })
