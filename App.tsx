@@ -7,6 +7,7 @@ import Config from "react-native-config";
 import Signin from './src/screens/auth/signIn';
 import Home from './src/screens/App/Home'
 import Favorites from './src/screens/App/Favorites'
+import ProductDetails from './src/screens/App/ProductDetails'
 import { colors } from "./src/utils/colors";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -70,6 +71,7 @@ const App = () => {
                     isSignedIn ? (
                         <>
                             <Stack.Screen name="Tabs" component={Tabs} options={{headerShown: false}}></Stack.Screen>
+                            <Stack.Screen name="ProductDetails" component={ProductDetails} options={{headerShown: false}}></Stack.Screen>
                         </>
                     ) : (
                         <>
