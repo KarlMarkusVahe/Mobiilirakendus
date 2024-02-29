@@ -5,7 +5,8 @@ import Signup from './src/screens/auth/SignUp'
 import Splash from './src/screens/auth/Splash';
 import Config from "react-native-config";
 import Signin from './src/screens/auth/signIn';
-import Home from './src/screens/Home';
+import Home from './src/screens/App/Home'
+import Favorites from './src/screens/App/Favorites'
 import { colors } from "./src/utils/colors";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -25,6 +26,10 @@ const Tabs = () => {
                     icon = focused
                         ? require('./src/assets/tabs/HomeActive.png')
                         : require('./src/assets/tabs/Home.png')
+                } else if (route.name === 'Favorites') {
+                    icon = focused
+                        ? require('./src/assets/tabs/FavoActive.png')
+                        : require('./src/assets/tabs/Favo.png')
                 }
 
                 return <Image style={{width: 24, height: 24}} source={icon}></Image>
@@ -34,6 +39,7 @@ const Tabs = () => {
             tabBarStyle: {borderTopColor: colors.lightGray}
         })}>
             <Tab.Screen name="Home" component={Home}></Tab.Screen>
+            <Tab.Screen name="Favorites" component={Favorites}></Tab.Screen>
         </Tab.Navigator>
     );
 }

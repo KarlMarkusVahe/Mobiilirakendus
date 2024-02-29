@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList } from "react-native";
 import { SafeAreaView } from "react-native";
-import Header from "../../components/Header";
+import Header from "../../../components/Header";
 import { styles } from "./styles";
-import { categories } from "../../data/categories";
-import CategoryBox from "../../components/CategoryBox";
-import ProductHomeItem from "../../components/ProductHomeItem";
-import { products } from "../../data/products";
+import { categories } from "../../../data/categories";
+import CategoryBox from "../../../components/CategoryBox";
+import ProductHomeItem from "../../../components/ProductHomeItem";
+import { products } from "../../../data/products";
 
 const Home = () => {
     const [selectedCategory, setSelectedCategory] = useState()
