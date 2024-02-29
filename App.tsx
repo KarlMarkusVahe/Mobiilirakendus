@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, Image } from "react-native";
 import Signup from './src/screens/auth/SignUp'
 import Splash from './src/screens/auth/Splash';
 import Config from "react-native-config";
@@ -10,8 +10,37 @@ import { colors } from "./src/utils/colors";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+const Tabs = () => {
+    return (
+        <Tab.Navigator screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+            let icon;
+
+                if (route.name === 'Home') {
+                    icon = focused
+                        ? require('./src/assets/tabs/HomeActive.png')
+                        : require('./src/assets/tabs/Home.png')
+                }
+
+                return <Image style={{width: 24, height: 24}} source={icon}></Image>
+            },
+            headerShown: false,
+            tabBarShowLabel: false,
+            tabBarStyle: {borderTopColor: colors.lightGray}
+        })}>
+            <Tab.Screen name="Home" component={Home}></Tab.Screen>
+        </Tab.Navigator>
+    );
+}
 
 const App = () => {
+    const isSignedIn = true
+
     useEffect(() => {
         GoogleSignin.configure({
         scopes: ['https://www.googleapis.com/auth/drive.readonly'],
@@ -20,8 +49,6 @@ const App = () => {
         iosClientId: Config.GOOGLE_IOS_CLIENT_ID
         })
     }, [])
-
-    const Stack = createNativeStackNavigator();
 
     const theme = {
         colors: {
@@ -33,9 +60,19 @@ const App = () => {
         <SafeAreaProvider>
         <NavigationContainer theme={theme}>
             <Stack.Navigator>
-                <Stack.Screen name="Splash" component={Splash} options={{headerShown: false}} />
-                <Stack.Screen name="Signup" component={Signup} options={{headerShown: false}} />
-                <Stack.Screen name="Signin" component={Signin} options={{headerShown: false}} />
+            {
+                    isSignedIn ? (
+                        <>
+                            <Stack.Screen name="Tabs" component={Tabs} options={{headerShown: false}}></Stack.Screen>
+                        </>
+                    ) : (
+                        <>
+                            <Stack.Screen name="Splash" component={Splash} options={{headerShown: false}} />
+                            <Stack.Screen name="Signup" component={Signup} options={{headerShown: false}} />
+                            <Stack.Screen name="Signin" component={Signin} options={{headerShown: false}} />
+                        </>
+                    )
+            }
             </Stack.Navigator>
         </NavigationContainer>
         </SafeAreaProvider>
