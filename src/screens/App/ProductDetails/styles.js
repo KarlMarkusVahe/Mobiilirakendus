@@ -29,5 +29,24 @@ export const styles = StyleSheet.create({
         color: colors.textGray,
         fontWeight: '300',
         marginVertical: 8
+    },
+    footer: {
+       padding: 24,
+       flexDirection: 'row',
+       alignItems: 'center',
+       marginRight: 75
+    },
+    save: {
+        flex: 1
+    },
+    bookmarkContainer: {
+        backgroundColor: colors.lightGray,
+        padding: 18,
+        borderRadius: 8,
+        marginRight: 16
+    },
+    bookmarkIcon: {
+        width: 24,
+        height: 24
     }
 })
