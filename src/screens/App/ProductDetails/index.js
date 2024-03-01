@@ -3,6 +3,7 @@ import { View, Text, ScrollView, Image, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
 import Button from '../../../components/Button'
+import ImageCarousel from "../../../components/ImageCarousel";
 
 const ProductDetails = ({navigation, route}) => {
     const {product} = route.params || {}
@@ -14,7 +15,11 @@ const ProductDetails = ({navigation, route}) => {
     return (
         <SafeAreaView style={styles.save}>
             <ScrollView>
-                <Image style={styles.image} source={{uri: product?.image}}></Image>
+                {product?.images?.length ? (
+                    <ImageCarousel images={product?.images}></ImageCarousel>
+                ) : (
+                    <Image style={styles.image} source={{uri: product?.image}}></Image>
+                )}
                 <View style={styles.content}>
                     <Text style={styles.title}>{product?.title}</Text>
                     <Text style={styles.price}>{product?.price}</Text>
