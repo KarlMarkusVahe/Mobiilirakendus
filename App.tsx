@@ -8,6 +8,7 @@ import Signin from './src/screens/auth/signIn';
 import Home from './src/screens/App/Home'
 import Favorites from './src/screens/App/Favorites'
 import ProductDetails from './src/screens/App/ProductDetails'
+import Profile from './src/screens/App/Profile'
 import { colors } from "./src/utils/colors";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -31,8 +32,11 @@ const Tabs = () => {
                     icon = focused
                         ? require('./src/assets/tabs/FavoActive.png')
                         : require('./src/assets/tabs/Favo.png')
+                } else if (route.name === 'Profile') {
+                    icon = focused
+                        ? require('./src/assets/tabs/ProfileActive.png')
+                        : require('./src/assets/tabs/Profile.png')
                 }
-
                 return <Image style={{width: 24, height: 24}} source={icon}></Image>
             },
             headerShown: false,
@@ -41,6 +45,7 @@ const Tabs = () => {
         })}>
             <Tab.Screen name="Home" component={Home}></Tab.Screen>
             <Tab.Screen name="Favorites" component={Favorites}></Tab.Screen>
+            <Tab.Screen name="Profile" component={Profile}></Tab.Screen>
         </Tab.Navigator>
     );
 }
