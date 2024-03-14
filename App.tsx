@@ -14,9 +14,19 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Settings from './src/screens/App/Settings';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const ProfileStack = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="Profile" component={Profile} options={{headerShown: false}}></Stack.Screen>
+            <Stack.Screen name="Settings" component={Settings} options={{headerShown: false}}></Stack.Screen>
+        </Stack.Navigator>
+    )
+}
 
 const Tabs = () => {
     return (
@@ -45,7 +55,7 @@ const Tabs = () => {
         })}>
             <Tab.Screen name="Home" component={Home}></Tab.Screen>
             <Tab.Screen name="Favorites" component={Favorites}></Tab.Screen>
-            <Tab.Screen name="Profile" component={Profile}></Tab.Screen>
+            <Tab.Screen name="Profile" component={ProfileStack}></Tab.Screen>
         </Tab.Navigator>
     );
 }
