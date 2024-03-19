@@ -20,7 +20,6 @@ const Input = ({label, placeholder, isPassword, value, options, onChangeText, st
             <Text style={styles.label}>{label}</Text>
             {type === 'picker' ? (
                 <Pressable onPress={() => setPickerModalVisible(true)} style={styles.inputContainer}>
-                    <Text style={[styles.placeholder, style]}>{placeholder}</Text>
                         {value ? ( <Text style={[styles.placeholder, style]}>{value?.title}</Text>) : ( <Text style={[styles.placeholder, style]}>{placeholder}</Text>)}
                         <Image style={styles.arrow} source={require('../../assets/arrow.png')}></Image>
                 </Pressable>
@@ -42,7 +41,7 @@ const Input = ({label, placeholder, isPassword, value, options, onChangeText, st
                     <Text style={styles.optionTitle}>Select Options</Text>
                     {
                         options?.map( opt => {
-                            if(!opt.id) {
+                            if(!opt?.id) {
                                 return null
                             }
 
