@@ -89,7 +89,7 @@ const App = () => {
         <NavigationContainer theme={theme}>
             <Stack.Navigator>
             {
-                    isSignedIn ? (
+                    user?.accessToken ? (
                         <>
                             <Stack.Screen name="Tabs" component={Tabs} options={{headerShown: false}}></Stack.Screen>
                             <Stack.Screen name="ProductDetails" component={ProductDetails} options={{headerShown: false}}></Stack.Screen>

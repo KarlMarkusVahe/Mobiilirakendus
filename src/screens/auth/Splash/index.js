@@ -6,7 +6,7 @@ import { UserContext } from "../../../../App";
 
 const Splash = ({navigation}) => {
     const user = useContext(UserContext)
-    console.log(user)
+    console.log('user => ', user)
 
     console.log('navigatsion >', navigation)
 
