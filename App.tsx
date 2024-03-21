@@ -16,6 +16,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Settings from './src/screens/App/Settings';
 import CreateListing from './src/screens/App/CreateListing';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -65,8 +66,14 @@ const Tabs = () => {
 }
 
 const App = () => {
-    const isSignedIn = false
     const [user, setUser] = useState()
+
+    useEffect(() => {
+        (async () => {
+            const accessToken = await AsyncStorage.getItem('auth_token')
+            setUser({ accessToken })
+        })
+    })
 
     useEffect(() => {
         GoogleSignin.configure({
